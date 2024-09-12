@@ -17,9 +17,16 @@ const server = http.createServer((req, res) => {
         // Handle when the file wasn't found
         res.writeHead(404, { 'Content-Type': 'text/html' });
         res.end('File not found.');
-      } else {
+      } 
+      else {
+        // Define a style map
+        const styleMap = [
+          "Heading1 => h1",
+          "Normal => p",
+        ].join(", ");
+
         // Convert the Word file to HTML
-        mammoth.convertToHtml({ buffer: data}).then(result => {
+        mammoth.convertToHtml({ buffer: data, styleMap: styleMap }).then(result => {
           const resumeHTML = result.value;
 
           // Read the HTML template
@@ -33,6 +40,8 @@ const server = http.createServer((req, res) => {
               const responseHtml = templateData.toString()
                 .replace('<div id="resume-content"></div>', `<div id="resume-content">${resumeHTML}</div>`);
 
+              console.log('Served the content.');
+
               // Serve the final HTML
               res.writeHead(200, { 'Content-Type': 'text/html' });
               res.end(responseHtml);
@@ -43,6 +52,20 @@ const server = http.createServer((req, res) => {
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end('Error processing the resume.');
         });
+      }
+    });
+  }
+  // Serve the CSS file when requested
+  else if (req.url === '/theme.css') {
+    fs.readFile('theme.css', (error, data) => {
+      if (error) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('CSS file not found');
+      } 
+      else {
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        console.log('Served the theme.');
+        res.end(data);
       }
     });
   }
