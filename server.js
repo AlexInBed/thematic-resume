@@ -2,7 +2,9 @@ const http = require('node:http');
 const fs = require('fs');
 const mammoth = require('mammoth');
 
-// This is a test, remove before next push
+// Define the available themes
+const themes = ['theme1.css', 'theme2.css', 'theme3.css'];
+let randomTheme;
 
 // Define the hostname (localhost IP address) and port number for the server to listen on
 const hostname = '127.0.0.1';
@@ -38,9 +40,19 @@ const server = http.createServer((req, res) => {
               res.end('Error loading the template');
             } 
             else {
+              // Get a random theme
+              randomTheme = themes[Math.floor(Math.random() * themes.length)];
+              
+              // Create an HTML variable to serve
+              let responseHtml = templateData;
+
               // Replace the placeholder with the resume content
-              const responseHtml = templateData.toString()
+              responseHtml = responseHtml.toString()
                 .replace('<div id="resume-content"></div>', `<div id="resume-content">${resumeHTML}</div>`);
+
+              // Insert the random theme
+              responseHtml = responseHtml.toString()
+                .replace('random-theme', randomTheme);
 
               console.log('Served the content.');
 
@@ -58,15 +70,15 @@ const server = http.createServer((req, res) => {
     });
   }
   // Serve the CSS file when requested
-  else if (req.url === '/theme.css') {
-    fs.readFile('theme.css', (error, data) => {
+  else if (req.url.startsWith('/themes')) {
+    fs.readFile(`themes/${randomTheme}`, (error, data) => {
       if (error) {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('CSS file not found');
       } 
       else {
         res.writeHead(200, { 'Content-Type': 'text/css' });
-        console.log('Served the theme.');
+        console.log('Served the theme: ' + randomTheme);
         res.end(data);
       }
     });
