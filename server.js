@@ -46,6 +46,7 @@ const server = http.createServer((req, res) => {
               // Create an HTML variable to serve
               let responseHtml = templateData;
 
+              // TODO: I wonder if I could just do this once (unlike the theme), but I'm really not sure because I refresh
               // Replace the placeholder with the resume content
               responseHtml = responseHtml.toString()
                 .replace('<div id="resume-content"></div>', `<div id="resume-content">${resumeHTML}</div>`);
