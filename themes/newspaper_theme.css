@@ -1,0 +1,38 @@
+body {
+    background-image: url('../resources/newspaper_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: beige;
+    color: #333333;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h2, a {
+    text-align: justify;
+    color: #333333;
+    font-size: 24px;
+}
+
+li {
+    text-align: justify;
+    color: #333333;
+    font-size: 20px;
+}
+
+p {
+    font-size: 60px;
+    color: #000000;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+p strong {
+    color: #333333;
+    display: block;
+    font-size: 28px;
+    text-decoration: none;
+}

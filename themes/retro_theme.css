@@ -1,0 +1,44 @@
+body {
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+}
+h1, h2 {
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc;
+    text-align: center;
+    font-size: 25px;
+}
+p {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+    font-size: 35px;
+    line-height: 1.6;
+    margin: 20px;
+}
+p strong {
+    color: #ffcc00;
+    text-shadow: 0 0 2px #ffd83e, 0 0 5px #ffd83e, 0 0 10px #ffd83e;
+    font-size: 35px;
+    font-weight: bold;
+}
+div, section, article {
+    border: 2px solid #00ffcc;
+    padding: 20px;
+    margin: 20px;
+}
+a {
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc;
+    text-decoration: none;
+    font-size: 20px;
+}
+li {
+    color: #00bfff;
+    text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
+    font-size: 18px;
+}
+a:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
